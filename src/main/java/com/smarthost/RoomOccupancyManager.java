@@ -1,43 +1,50 @@
 package com.smarthost;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import com.smarthost.domain.RoomType;
+import com.smarthost.domain.RoomUsage;
+import com.smarthost.domain.RoomUsageResult;
+
+import java.util.*;
 
 public class RoomOccupancyManager {
 
 
-    private int premiumRoomCount = 5;
-    private int economyRoomCount = 10;
-    private List<Integer> eco = new ArrayList<>();
-    private List<Integer> prem = new ArrayList<>();
-
-    private boolean isPremiumFull() {
-        return prem.size() >= premiumRoomCount;
+    private boolean roomsAvailable(List<Integer> roomList, int availableRooms) {
+        return roomList.size() < availableRooms;
     }
 
-    private boolean isEconomyFull() {
-        return eco.size() >= economyRoomCount;
-    }
+    public RoomUsageResult calculate(int premiumRooms, int economyRooms) {
+        var eco = new ArrayList<Integer>();
+        var prem = new ArrayList<Integer>();
 
-    public void calculate(List<Integer> reservations) {
-        reservations
-                .stream()
-                .sorted(Comparator.reverseOrder()).forEach(payment -> {
 
-            boolean isPremiumPayment = payment >= 100;
+        //TODO read from JSON config
+        var reservations = List.of(23, 45, 155, 374, 22, 99, 100, 101, 115, 209);
+        //(reservations.stream().sorted(Collections.reverseOrder())).forEach(System.out::println);
 
-            if (!isPremiumFull() && isPremiumPayment) {
+        Queue<Integer> offeredPayments = new PriorityQueue<>(Comparator.reverseOrder());
+        offeredPayments.addAll(reservations);
+
+        while (!offeredPayments.isEmpty()) {
+            var payment = offeredPayments.poll();
+            var isPremiumPayment = payment >= 100;
+
+            if (isPremiumPayment) {
+                if (roomsAvailable(prem, premiumRooms)) {
+                    prem.add(payment);
+                }
+
+            } else if (roomsAvailable(prem, premiumRooms) && offeredPayments.size() >= economyRooms) {
+                //upgrade to premium
                 prem.add(payment);
-            } else if (!isPremiumFull()) { //remaining customer exeeds size of eco
-                //upgrade customer
-                prem.add(payment);
-            } else if (!isEconomyFull() && !isPremiumPayment) {
+            } else if (roomsAvailable(eco, economyRooms)) {
                 eco.add(payment);
             }
-        });
+        }
 
-        System.out.println("prem:" + prem + "  " + prem.stream().mapToInt(i -> i).sum());
-        System.out.println("eco:" + eco + "  " + eco.stream().mapToInt(i -> i).sum());
+        return RoomUsageResult.create(
+                RoomUsage.create(prem.size(), prem.stream().mapToInt(i -> i).sum(), RoomType.PREMIUM),
+                RoomUsage.create(eco.size(), eco.stream().mapToInt(i -> i).sum(), RoomType.ECONOMY)
+        );
     }
 }
