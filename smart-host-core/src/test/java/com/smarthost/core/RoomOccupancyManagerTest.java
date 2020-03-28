@@ -1,6 +1,6 @@
-package com.smarthost;
+package com.smarthost.core;
 
-import com.smarthost.domain.RoomUsageResult;
+import com.smarthost.core.domain.RoomUsageResult;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -9,7 +9,8 @@ import static org.hamcrest.Matchers.is;
 class RoomOccupancyManagerTest {
 
     private RoomOccupancyManager roomOccupancyManager = new RoomOccupancyManager();
-    //TODO parametrized tests
+    //TODO parametrized tests ??
+
     @Test
     public void test1(){
         RoomUsageResult result = roomOccupancyManager.calculate(3, 3);

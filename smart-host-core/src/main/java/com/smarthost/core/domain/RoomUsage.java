@@ -1,11 +1,11 @@
-package com.smarthost.domain;
+package com.smarthost.core.domain;
 
 public class RoomUsage {
-        private int usedRooms;
-        private int totalGain;
+        private Integer usedRooms;
+        private Integer totalGain;
         private RoomType roomType;
 
-    private RoomUsage(int usedRooms, int totalGain, RoomType roomType) {
+    private RoomUsage(Integer usedRooms, Integer totalGain, RoomType roomType) {
         this.usedRooms = usedRooms;
         this.totalGain = totalGain;
         this.roomType = roomType;
@@ -13,15 +13,15 @@ public class RoomUsage {
 
 
 
-    public static RoomUsage create(int usedRooms, int totalGain, RoomType roomType){
+    public static RoomUsage create(Integer usedRooms, Integer totalGain, RoomType roomType){
         return new RoomUsage(usedRooms,totalGain, roomType);
     }
 
-    public int getUsedRooms() {
+    public Integer getUsedRooms() {
         return usedRooms;
     }
 
-    public int getTotalGain() {
+    public Integer getTotalGain() {
         return totalGain;
     }
 

@@ -1,4 +1,4 @@
-package com.smarthost.domain;
+package com.smarthost.core.domain;
 
 public class RoomUsageResult {
     private RoomUsage premium;
