@@ -6,17 +6,16 @@
         <groupId>com.smarthost</groupId>
         <artifactId>smart-host</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/>
+
     </parent>
 
-    <groupId>com.smart.host</groupId>
     <artifactId>smart-host-web</artifactId>
     <name>smart-host-web</name>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
-            <groupId>com.smart-host</groupId>
+            <groupId>com.smarthost</groupId>
             <artifactId>smart-host-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -29,19 +28,20 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <!--scope>test</scope-->
+            <!--fixing the split package problem that
+            jsonassert and android.json both export package org.json -->
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin.external.google</groupId>
+                    <artifactId>android-json</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path-assert</artifactId>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -56,6 +56,19 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.6.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

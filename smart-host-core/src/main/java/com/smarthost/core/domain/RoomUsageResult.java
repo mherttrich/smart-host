@@ -1,15 +1,15 @@
 package com.smarthost.core.domain;
 
-public class RoomUsageResult {
+public final class RoomUsageResult {
     private RoomUsage premium;
     private RoomUsage economy;
 
-    private RoomUsageResult(RoomUsage premium, RoomUsage economy) {
+    private RoomUsageResult(final RoomUsage premium, final RoomUsage economy) {
         this.premium = premium;
         this.economy = economy;
     }
 
-    public static RoomUsageResult create(RoomUsage premium, RoomUsage economy){
+    public static RoomUsageResult create(final RoomUsage premium, final RoomUsage economy) {
         return new RoomUsageResult(premium, economy);
     }
 
@@ -23,9 +23,9 @@ public class RoomUsageResult {
 
     @Override
     public String toString() {
-        return "RoomUsageResult{" + "\n" +
-                "premium=" + premium + ",\n" +
-                "economy=" + economy +
-                "\n}";
+        return "RoomUsageResult{" + "\n"
+                + "premium=" + premium + ",\n"
+                + "economy=" + economy
+                + "\n}";
     }
 }

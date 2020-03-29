@@ -14,7 +14,8 @@ public class RoomOccupancyController {
     private RoomOccupancyManager roomOccupancyManager;
 
     @GetMapping("/room-occupancy")
-    public RoomUsageResult roomOccupancy(@RequestParam int premiumRooms, @RequestParam int economyRooms) {
+    public RoomUsageResult roomOccupancy(@RequestParam final int premiumRooms,
+                                         @RequestParam final int economyRooms) {
         return roomOccupancyManager.calculate(premiumRooms, economyRooms);
     }
 

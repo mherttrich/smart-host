@@ -56,10 +56,6 @@ class RoomOccupancyManagerTest {
         assertThat("economy total gain", result.getEconomy().getTotalGain(), is(45));
     }
 
-    // prem 13 eco 1
-    // 374, 209, 155, 115, 101, 100, 99, 45, 23, 22
-    // prem 6 + 3
-    // eco 1
     @Test
     public void test5(){
         var result = roomOccupancyManager.calculate(13, 1);
@@ -73,7 +69,7 @@ class RoomOccupancyManagerTest {
     }
 
     @Test
-    public void test6(){
+    public void testNoRooms(){
         var result = roomOccupancyManager.calculate(0, 0);
         assertThat("room type", result.getPremium().getRoomType(), is(RoomType.PREMIUM));
         assertThat("premium used rooms", result.getPremium().getUsedRooms(), is(0));
@@ -85,7 +81,7 @@ class RoomOccupancyManagerTest {
     }
 
     @Test
-    public void test(){
+    public void testNoPremiumCustomer(){
         var manager = new RoomOccupancyManager(Arrays.asList(77, 3));
         var result = manager.calculate(100, 100);
         assertThat("roomType", result.getPremium().getRoomType(), is(RoomType.PREMIUM));

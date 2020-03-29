@@ -1,6 +1,6 @@
 module com.smarthost.core {
+    requires java.logging;
     exports com.smarthost.core;
     exports com.smarthost.core.domain;
-    requires java.logging;
     opens com.smarthost.core;
 }

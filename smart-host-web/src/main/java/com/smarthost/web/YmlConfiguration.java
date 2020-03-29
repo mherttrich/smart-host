@@ -3,14 +3,13 @@ package com.smarthost.web;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties
-public class YMLConfiguration {
+public class YmlConfiguration {
 
     private List<Integer> bookings = new ArrayList<>();
 

@@ -1,19 +1,20 @@
 package com.smarthost.core.domain;
 
-public class RoomUsage {
+public final class RoomUsage {
         private Integer usedRooms;
         private Integer totalGain;
         private RoomType roomType;
 
-    private RoomUsage(Integer usedRooms, Integer totalGain, RoomType roomType) {
+    private RoomUsage(final Integer usedRooms, final Integer totalGain, final RoomType roomType) {
         this.usedRooms = usedRooms;
         this.totalGain = totalGain;
         this.roomType = roomType;
     }
 
-
-
-    public static RoomUsage create(Integer usedRooms, Integer totalGain, RoomType roomType){
+    /**
+     * static factory method.
+     */
+    public static RoomUsage create(final Integer usedRooms, final Integer totalGain, final RoomType roomType) {
         return new RoomUsage(usedRooms,totalGain, roomType);
     }
 
@@ -31,10 +32,10 @@ public class RoomUsage {
 
     @Override
     public String toString() {
-        return "RoomUsage{" +
-                "usedRooms=" + usedRooms +
-                ", totalGain=" + totalGain +
-                ", roomType=" + roomType +
-                '}';
+        return "RoomUsage{"
+                + "usedRooms=" + usedRooms
+                + ", totalGain=" + totalGain
+                + ", roomType=" + roomType
+                + '}';
     }
 }

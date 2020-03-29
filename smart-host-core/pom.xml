@@ -6,10 +6,9 @@
         <groupId>com.smarthost</groupId>
         <artifactId>smart-host</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/>
+
     </parent>
 
-    <groupId>com.smart-host</groupId>
     <artifactId>smart-host-core</artifactId>
     <name>smart-host-core</name>
     <version>1.0-SNAPSHOT</version>
