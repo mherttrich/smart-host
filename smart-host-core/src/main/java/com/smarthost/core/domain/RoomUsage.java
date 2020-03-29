@@ -25,7 +25,6 @@ public class RoomUsage {
         return totalGain;
     }
 
-    //TODO
     public RoomType getRoomType() {
         return roomType;
     }
