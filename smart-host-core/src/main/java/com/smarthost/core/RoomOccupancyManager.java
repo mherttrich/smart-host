@@ -29,12 +29,14 @@ public class RoomOccupancyManager {
 
     /**
      * method to calculate the best room usage.
+     * @param premiumRoomAmount amount of available economy rooms
+     * @param economyRoomAmount amount of available economy rooms
+     * @return RoomUsageResult
      */
     public RoomUsageResult calculate(final int premiumRoomAmount, final int economyRoomAmount) {
         var economyRooms = new ArrayList<Integer>();
         var premiumRooms = new ArrayList<Integer>();
         var remaining = sortedOfferedPayments.size();
-
 
         for (var payment : sortedOfferedPayments) {
 

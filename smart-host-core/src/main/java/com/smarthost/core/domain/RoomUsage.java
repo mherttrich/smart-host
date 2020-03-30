@@ -15,7 +15,7 @@ public final class RoomUsage {
      * static factory method.
      */
     public static RoomUsage create(final Integer usedRooms, final Integer totalGain, final RoomType roomType) {
-        return new RoomUsage(usedRooms,totalGain, roomType);
+        return new RoomUsage(usedRooms, totalGain, roomType);
     }
 
     public Integer getUsedRooms() {
